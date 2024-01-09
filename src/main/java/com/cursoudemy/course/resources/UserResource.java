@@ -11,6 +11,7 @@ import com.cursoudemy.course.entites.User;
 @RequestMapping(value="/users")
 public class UserResource {
 	
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<User> findAll(){
 		User u = new User(1L, "null", "null", "null", "null");
