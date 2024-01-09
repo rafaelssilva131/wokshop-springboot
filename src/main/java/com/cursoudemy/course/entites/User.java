@@ -1,12 +1,17 @@
 package com.cursoudemy.course.entites;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +26,10 @@ public class User implements Serializable {
 	private String email;
 	private String phone;
 	private String passorwd;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
+	private List<Order> ordes = new ArrayList<>();
 	
 	public User() {
 		
@@ -37,7 +46,6 @@ public class User implements Serializable {
 	public Long getId() {
 		return id;
 	}
-
 
 	public String getName() {
 		return name;
@@ -70,7 +78,11 @@ public class User implements Serializable {
 	public void setPassorwd(String passorwd) {
 		this.passorwd = passorwd;
 	}
-
+	
+	public List<Order> getOrdes() {
+		return ordes;
+	}
+		
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
